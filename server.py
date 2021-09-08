@@ -13,21 +13,6 @@ class Data(BaseModel):
     phone: str
 
 
-@app.post("/")
-def formatting_phone_json(data: Data):
-    print('we are in root', data.phone)
-    phone = data.phone  
-
-    if not phone:
-        formatted_phone = ""
-    else:
-        formatted_phone = phoneformatting.format_phone_num(phone)
-
-    return Response(
-        f"{formatted_phone}",
-        media_type="text/html"
-        )
-
 @app.post("/unify_phone_from_json")
 def formatting_phone_json(data: Data):
     print('we are in unify_phone_from_json')
@@ -70,7 +55,7 @@ def formatting_phone_query(phone: str = Query(...)):
         )
 
 
-@app.get("/unify_phone_from_cookie")
+@app.get("/unify_phone_from_cookies")
 def formatting_phone_cookie(phone: str = Cookie(default=None)):
     if not phone:
         formatted_phone = ""
